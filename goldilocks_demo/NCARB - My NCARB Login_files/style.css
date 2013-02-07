@@ -1,0 +1,1020 @@
+/* @reference "custom-theme/jquery-ui-1.8.12.custom.css"; */
+/* @reference "baseline.css"; */
+
+/* Site Styles
+-------------------------------------------------------------------------------*/
+body {
+background: #ccc url(../images/bg.backdrop.jpg) top center no-repeat;
+font: 12px/16px Arial, Helvetica, sans-serif;
+}
+h1,h2,h3,h4,h5,h6 {font-weight:normal;line-height:1.1}
+p, ul, ol {padding:8px 0}
+a {color:#357d95;text-decoration:none}
+a:hover {text-decoration:underline}
+
+form {font: 12px/15px Helvetica, Arial, sans-serif;}
+	form li {list-style: none;padding-bottom: 20px}
+		label {
+		color: #000;
+		font-weight: bold;
+		display: block;
+		padding-bottom: 5px;
+		}
+		.label {position:relative;display:inline-block;*display:inline;zoom:1;line-height: 26px; height: 26px;margin-right: 10px}
+		.ie6 .label, .ie7 .label {top: -4px}
+			.label label {
+			position: absolute;
+			top: 0;
+			left: 0;
+			line-height: 28px;
+			height: 28px;
+			padding-left: 5px;
+			color: #aaa;
+			font-style: italic
+			}
+		select {margin-right: 10px}
+		input {
+		height: 26px;
+		line-height: 26px;
+		width: 190px;
+		padding: 0 3px;
+		border: 1px solid #acaaa7;
+		background: #fff url(../images/bg.input.png);
+		}
+		button {position: relative}
+		.loading {
+		width: 16px;
+		height: 16px;
+		background: url(../images/ajax-loader.gif);
+		display: block;
+		position: absolute;
+		right: -30px;
+		top: 39%; /* gchaney - modified to look more centered vertically (in FF4+) */
+		margin-top: -8px;
+		}
+		
+/* Custom Select Box CSS */
+		/* applied to original <select> to hide */
+		.has_sb{position:absolute;left:-999999em;text-indent:-999999em;}
+		/* always visible styles */
+		.selectbox{display:inline-block;*display:inline;font-family:arial;font-size:12px;position:relative;vertical-align:middle;zoom:1;margin-right: 10px}
+		.selectbox .display{
+		background:#fff;
+		border-top:1px solid #e2e1e1;
+		border-left:1px solid #e2e1e1;
+		border-bottom: 1px solid #b2b0ae;
+		border-right: 1px solid #cccbca;
+		color:#575757;
+		cursor:default;
+		display:block;
+		font-weight:normal;
+		height:26px;
+		line-height:26px;
+		overflow:hidden;
+		outline:none;
+		padding:0 35px 0 5px;
+		position:relative;
+		text-decoration:none;
+		}
+		.ie .selectbox .display {position: relative; }
+		.selectbox.disabled .display{color:#999;}
+		.selectbox.focused .display .text{display:inline-block;*display:inline;zoom:1;}
+		.selectbox .display.active{border-color:#7b7d83;}
+		.selectbox .display .arrow_btn{
+		background:#dbdbdb url(../images/icn.selectbox.gif) center center no-repeat;
+		display:block;
+		height:26px;
+		line-height:.92em;
+		padding:1px;
+		position:absolute;
+		right:0;
+		text-align:center;
+		top:0;
+		width:26px;
+		}
+		.selectbox .display .arrow_btn .arrow{
+		display: none;
+		}
+		.selectbox .display.active .arrow_btn{
+		-webkit-box-shadow:inset 0 0 1px 1px #9eb0ba;
+		-moz-box-shadow:inset 0 0 1px 1px #9eb0ba;
+		-o-box-shadow:inset 0 0 1px 1px #9eb0ba;
+		box-shadow:inset 0 0 1px 1px #9eb0ba;
+		}
+		.selectbox .display.hover .arrow_btn{cursor: pointer}
+		.selectbox .value{display:none;}
+		/* dropdown styles */
+		.selectbox.items{
+		background:#fff;
+		border:1px solid #828790;
+		display:block;
+		font-family:arial;
+		font-size:1em;
+		list-style-type:none;
+		margin:0;
+		overflow-x:hidden;
+		overflow-y:auto;
+		padding:0 0 1px 0;
+		z-index:99999;
+		}
+		.selectbox.items.above{}
+		.selectbox.items li{display:block;margin:0;padding:0;/*white-space:nowrap; maybe necessary if using fixedWidth: false */}
+		.selectbox.items li.first{margin-top:0;}
+		.selectbox.items li>.item{color:#000;cursor:default;display:block;padding:4px 6px;text-decoration:none;}
+		.selectbox.items li>.item>.text{display:inline-block;*display:inline;zoom:1;}
+		.selectbox.items li.selected>.item{border-bottom:1px dotted #999;border-top:1px dotted #999;}
+		.selectbox.items li.disabled>.item{color:#999;}
+		.selectbox.items li.hover>.item{background-color:#3399ff;color:#fcfcfc;}
+		.selectbox.items .value{display:none;}
+		/* optgroup styles */
+		.selectbox.items .optgroup .items{
+		border:none;
+		margin:0;
+		padding:0;
+		-webkit-box-shadow:none;
+		-moz-box-shadow:none;
+		-o-box-shadow:none;
+		box-shadow:none;
+		}
+		.selectbox.items .optgroup>.label{cursor:default;font-weight:bold;line-height:1em;}
+		.selectbox.items .optgroup .items li>.item{padding-left:1em;}
+		/* easy rounding styles */
+		.selectbox .round_sb.display{
+		padding:2px 26px 2px 5px;
+		border-radius:5px;
+		}
+		.selectbox .round_sb.display .arrow_btn{
+		right:2px;
+		top:2px;
+		}
+		.selectbox.round_sb.items>li>a{padding:4px 6px;}
+		/* for optgroups */
+		.selectbox.round_sb.items>li>.label{line-height:2.08em;padding:4px 6px;}
+		.selectbox.round_sb.items>li>.items li>.item{padding:4px 6px 4px 12px;}
+		/* fixed width example styles */
+		.selectbox.fixed_width, .selectbox .display.fixed_width{
+		width:73px;
+		}
+		.selectbox .display.fixed_width{
+		padding:0 24px 0 3px;
+		}
+		.selectbox.fixed_width.items{
+		width:100px; /* width of display text plus the padding (60 + 27) = 87 */
+		}
+		.selectbox.fixed_width2, .selectbox .display.fixed_width2{
+		width:60px;
+		}
+		.selectbox .display.fixed_width2{
+		padding:0 24px 0 3px;
+		}
+		.selectbox.fixed_width2.items{
+		width:300px; /* width of display text plus the padding (60 + 27) = 87 */
+		}
+		.selectbox.fixed_width3, .selectbox .display.fixed_width3{
+		width:50px;
+		}
+		.selectbox .display.fixed_width3 {
+		padding:0 24px 0 3px;
+		}
+		.selectbox.fixed_width3.items{
+		width:77px; /* width of display text plus the padding (60 + 27) = 87 */
+		}
+/* end custom select box css */
+		
+		input.char3 { width: 25px }
+			input.error{
+			border: 2px solid #f30;
+			background: #fff;
+			width: 188px;
+			height: 24px;
+			line-height: 24px;
+			}
+		input[type='password'] {
+		font-size: 1.3em;
+		}
+		.help {
+		padding-left: 20px;
+		}
+	.inputNote { /* gchaney - added this class for notes that immediately follow inputs */
+	color: #888888;
+    display: block;
+    font-size: 11px;
+    height: 24px;
+    left: 120px;
+    line-height: 24px;
+    padding: 0;
+    position: relative;
+    top: 0;
+	}
+	.ui-state-error {
+	display: block;
+	position: relative;
+	top: 0;
+	height: auto;
+	line-height: 16px;
+	background: url(../images/icn.error.png) left center no-repeat;
+	min-height: 24px;
+	padding-left: 30px;
+	font-size: 11px;
+	}
+	    .ui-state-error.field-validation-error {
+	    left: 125px;
+	    height: 24px;
+	    line-height: 24px;
+	    padding-bottom: 5px;
+	    color: #888;
+	    font-size: 11px;
+	    }
+	
+	.ui-state-highlight {
+	display: block;
+	position: relative;
+	top: 0;
+	background: url(../images/icn.info.png) left center no-repeat;
+	min-height: 24px;
+	padding-left: 30px;
+	font-size: 11px;
+	}
+	.DashboardLogin .ui-state-error {
+	position: static;
+	margin-bottom: 5px;
+	*margin-bottom: 2px;
+	}
+	.DashboardServiceUpdateLogin .ui-state-error {
+	position: static;
+	margin-bottom: 5px;
+	*margin-bottom: 2px;
+	}
+	.hideValidationSummaryErrorList.validation-summary-errors ul {
+	display: none;
+	}
+	/*.showValidationSummaryErrorList.alert {
+	background-position: center bottom;
+	background-repeat: repeat-x;
+	height: auto;
+	}*/
+	.showhide .ui-state-error {
+	display: block;
+	margin-left: 0;
+	top: 10px;
+	left: 100px;
+	}
+	.valid {
+	display: none;
+	}
+	.showValid .valid {
+	width: 28px;
+	height: 28px;
+	background: url(../images/icn.valid.gif) center center no-repeat;
+	display: inline-block;
+	*display:inline;
+	zoom: 1;
+	clear: none;
+	top: -5px;
+	position: relative;
+	text-indent: -9999px;
+	}
+	/* adjusts valid icon in 6,7,8 versions of ie */
+	.ie6 .valid, .ie7 .valid {
+	top: 8px;
+	}
+	.ie8 .valid {
+	top: -8px;
+	}
+	.alert {
+	background: #ffebeb;
+    border: 2px solid #fbc7c7;
+    margin: 0 0 8px;
+	}
+	.alert>:first-child {
+	border: none;
+	color: #000;
+	font-size: 12px;
+	left: 0;
+	padding-bottom: 0;
+	}
+	    /*.alert>:first-child a:link, .alert>:first-child a:visited, .alert>:first-child a:hover
+        { font-weight: 400;}*/
+	
+	.alert .ui-state-highlight strong,
+	.alert .ui-state-error strong { }
+	/*.alert .ui-state-highlight span,
+	.alert .ui-state-error span { display: block; }*/
+	.alert .close { float: right; }
+		.alert .close span { width: 16px; }
+	.alert.info, .alert.success {
+	background: #ffffea;
+    border-color: #f7ea9d;
+	}
+	    .alert.success .ui-state-highlight {
+	    background: url(../images/icn.valid.gif) left center no-repeat;
+	    }
+    .notify { padding: 0 }
+    .master header + .notifyContainer { margin: 15px 30px 0 30px }
+#login {
+width: 199px;
+height: 198px;
+padding: 11px;
+background: url(../images/bg.login.png);
+color: #888;
+}
+	#login h2 {
+	font: 17px/20px "Gill Sans", "Trebuchet MS", Calibri, sans-serif;
+	text-transform: uppercase;
+	font-weight: normal;
+	padding-bottom: 12px;
+	}
+	#login p a {color:#2e6897}
+	
+.screen {
+width: 982px;
+margin: 0 auto;
+background: #43869c url(../images/bg.screen.jpg) no-repeat;
+-webkit-box-shadow: 0 8px 16px rgba(35,31,32,0.5);
+-moz-box-shadow: 0 8px 16px rgba(35,31,32,0.5);
+-o-box-shadow: 0 8px 16px rgba(35,31,32,0.5);
+box-shadow: 0 8px 16px rgba(35,31,32,0.5);
+}
+	.screen section:first-child {
+	background: #fff;
+	}
+		.screen section header {
+		padding: 20px 10px 0;
+		height: 148px;
+		background: #43869c url(../images/bg.screen.jpg) no-repeat;
+		}
+			.screen section header .SuperBar {
+			background: #e1ebef;
+			background: rgba(255,255,255,0.85);
+			padding: 15px 20px;
+			margin-bottom: 35px;
+			height: 30px;
+			line-height: 30px;
+			text-align: right;
+			color: #87abb7;
+			}
+			.screen section header  h1 a {
+			 text-decoration: none;
+			color: #fff;
+			}
+				.screen section header .SuperBar img {float: left}
+				.screen section header .SuperBar #logout {text-decoration:underline}
+			.screen section header h1 { padding: 0 20px; }
+	.screen h1 {
+	font-size: 34px;
+	color: #fff;
+	}
+	.screen h2 {
+	font-size: 16px;
+	color: #000;
+	}
+	.screen .DashboardLogin:first-child {
+	margin: 0 auto;
+	width: 640px;
+	padding: 0 20px 15px 20px;
+	margin-bottom: 25px;
+	-webkit-box-shadow: 0 5px 14px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0 5px 14px rgba(0,0,0,0.2);
+	-o-box-shadow: 0 5px 14px rgba(0,0,0,0.2);
+	box-shadow: 0 5px 14px rgba(0,0,0,0.2);
+	background: #e3edf0 url(../images/bg.DashboardLogic.png) repeat-x;
+	}
+		.screen .DashboardLogin header {background:none;height:auto;padding:20px 0 0}
+			.screen .DashboardLogin h1 {
+			font-size: 24px;
+			padding: 20px 0 35px;
+			color: #65696b
+			}
+		.screen .DashboardLogin form {
+		display: block;
+		float: left;
+		clear: none;
+		width: 405px;
+		background: url(../images/rule.vertical.png) right no-repeat;
+		}
+			.screen .DashboardLogin form ol {position: relative;top: -15px;}
+				/*.screen .DashboardLogin form ol button {float: left}*/
+		.screen .DashboardLogin .register {
+		float: right;
+		clear: none;
+		width: 175px;
+		padding: 25px 30px;
+		text-align: center;
+		color: #65696b;
+		}
+			.screen .DashboardLogin .register h2 {
+			color: #000;
+			font-size: 12px;
+			}
+			.screen .DashboardLogin .register p {
+			padding: 0 0 5px;
+			}
+		.screen .DashboardLogin .help {
+		font-size: 9pt;
+		}
+		.screen .DashboardLogin .help.cantlogin {
+		padding-left: 40px;
+		}
+	.screen .upgrade {
+	margin: 0 auto 20px auto;
+	width: 640px;
+	padding: 14px 20px;
+	background: #bfd6dd;
+	-webkit-box-shadow: 0 5px 14px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0 5px 14px rgba(0,0,0,0.2);
+	-o-box-shadow: 0 5px 14px rgba(0,0,0,0.2);
+	box-shadow: 0 5px 14px rgba(0,0,0,0.2);
+	background: #e3edf0 url(../images/bg.DashboardLogic.png) repeat-x;
+	}
+	    /* gchaney - I commented out the a.button styles and added the paragraph styles per desired changes from the communications team */
+		/*.screen .upgrade a.button {
+		line-height: 24px;
+		height: 24px;
+		}*/
+		.screen .upgrade p {
+		font-size: 12px;
+		}
+	.screen article {
+	padding: 15px 30px 0;
+	color: #848484;
+	}
+	.screen .aside article {
+	width: 580px;
+	float: left;
+	}
+		.screen article section {
+		background: url(../images/rule.horizontal.png) no-repeat;
+		margin-bottom: 35px;
+		}
+		.screen article section.introduction {margin-bottom:10px}
+		.screen article .service {
+		position:relative;
+		padding: 15px 0;
+		background: url(../images/rule.horizontal.png) bottom no-repeat;
+		}
+			.screen article .service .description {
+			width: 425px;
+			float: left;
+			}
+			.screen article .service .launch {
+			float: right;
+			text-align: center;
+			font-size: 10px;
+			line-height: 14px;
+			width: 100px;
+			padding: 0 30px;
+			position: absolute;
+			top: 15px;
+			right: 0;
+			}
+			.screen article .active .service .launch {
+			top: 50%;
+			margin-top: -16px;
+			}
+		.screen article .step {
+		position: relative;
+		}
+		.screen article .step.complete {
+		
+		}
+			.screen article .step.complete .edit {
+			position: absolute;
+			top: 5px;
+			right: 0;
+			font-size: 13px;
+			}
+			.screen article .step.complete fieldset:first-of-type {
+			background: url(../images/rule.horizontal.png) top no-repeat;
+			}
+				.screen article .step.complete fieldset ul {
+				float: none
+				}
+					.screen article .step.complete fieldset li:first-child, .screen article .step.complete fieldset li {
+					padding: 10px 0;
+					background: url(../images/rule.horizontal.png) bottom no-repeat;
+					display: block;
+					}
+						.screen article .step.complete fieldset label, .screen article .step.complete fieldset .read {
+						color: #848484;
+						font-size: 11px;
+						height: 14px;
+						line-height: 14px;
+						padding: 0;
+						padding-top: 5px;
+						}
+						.screen article .step.complete fieldset span {
+						position: relative;
+						top: -3px;
+						display: inline;
+						}
+		.screen article .step.inactive {
+		height: 60px;
+		overflow: hidden;
+		}
+                .screen article .step {
+				margin-bottom: 20px; /* gchaney: I had to lower this from 40px to 20px because I removed 'form' from a bunch of the selectors */
+				position: relative;
+				}
+					.screen article .step h2 {
+					font-size: 19px;
+					display: inline-block;
+					}
+					.ie .screen article .step h2 {
+					display: inline;
+					}
+					.screen article .step label {
+					display: inline-block;
+					font-weight: normal;
+					}
+					.screen article .step fieldset {
+					background: url(../images/rule.horizontal.png) bottom no-repeat;
+					}
+						.screen article .step fieldset ul {
+						padding: 0 0 10px;
+						float: left;
+						}
+							.screen article .step fieldset ul li:first-child {
+							padding-top: 5px
+							}
+							.screen article .step fieldset:first-of-type .showhide {
+							background: url(../images/rule.horizontal.png) top no-repeat;
+							}
+							.screen article .step fieldset .showhide {
+							padding-bottom: 0;
+							}
+							.screen article .step fieldset .showhide {
+							padding: 10px 0;
+							}
+								.screen article .step fieldset .showhide input {
+								width: auto;
+								background: none;
+								border: none;
+								margin-right: 8px;
+								}
+								.screen article .step fieldset .showhide label, .screen article .step.complete fieldset h3 {
+								font-size: 15px;
+								line-height: 26px;
+								height: 20px;
+								padding-bottom: 0;
+								font-weight: normal;
+								border: none;
+								color: #000;
+								}
+								.ie .screen article .step fieldset .showhide label, .ie .screen article .step.complete fieldset h3 {
+								height: 22px
+								}
+									.screen article .step fieldset .showhide label.ui-button-text-only .ui-button-text { padding: 0; line-height: inherit; color: #000; }
+							.screen article .step .part {
+							display: inline
+							}
+								.screen article .step .part label {
+								width: 110px; /* gchaney - I had to increase this from 90px to 110px to accomodate for the longer username labels (e.g. Record Number/E-mail) */
+								height: 26px;
+								line-height: 26px;
+								text-align: right;
+								padding: 0 8px 10px 0;
+								float: left;
+								}
+								.screen article .step .part span {
+								float: left;
+								}
+								.screen article .step .part a.help {
+								display: block;
+								padding: 5px 0 0;
+								}
+					.screen article .step button {
+					margin-top: 18px;
+					}
+				.screen article .step .NewAccount {
+				background: url(../images/rule.horizontal.png) top no-repeat;
+				padding-top: 10px;
+				}
+					.screen article .step .NewAccount label {
+					width: 110px;
+					padding-right: 10px;
+					}
+					.screen article .step .NewAccount button {
+					float: left;
+					clear: both;
+					position: relative;
+					left: 125px;
+					top: -15px;
+					margin: 0;
+					}
+					.screen article .step .NewAccount .nameInputs input[type='text'] {
+					width: 155px;
+					}
+		            .screen article .step .NewAccount .nameInputs .fixed_width3 {
+		            margin-right: 40px;
+		            }
+				.screen article .step.complete .NewAccount li {
+				background: none;
+				}
+					.screen article .step.complete .NewAccount label,
+					.screen .complete article .step.complete .NewAccount label {
+					position: relative;
+					font-size: 11px;
+					top: 2px;
+					}
+					.screen article .step.complete .NewAccount .read {
+					color: #000;
+					display: inline;
+					}
+                .screen article .singleStep { /* gchaney - added this selector and it's child styles for styling single step form */
+                padding: 20px 0;
+                }
+                    .screen article .singleStep fieldset > div:first-child,
+                    .screen article fieldset.singleStep > div:first-child {
+                    padding-bottom: 30px;
+                    }
+                    .screen article .singleStep label {
+				    display: inline-block;
+				    font-weight: normal;
+				    width: 110px;
+				    padding-right: 10px;
+				    }
+				    .screen article .singleStep button,
+				    .screen article .singleStep .button {
+                    clear: both;
+                    float: left;
+                    left: 125px;
+                    margin: 0;
+                    position: relative;
+                    top: -15px;
+                    }
+.screen .complete article {
+font-size: 1.25em;
+padding-bottom: 15px; /* gchaney - added this padding */
+}
+	.screen .complete h2 {font-size:19px}
+	.screen .complete article .step.complete fieldset label, .screen .complete article .step.complete fieldset .read {
+	font-size:13px;
+	height:15px;
+	line-height:15px;
+	}
+	.screen .complete article .step.complete fieldset .read.password {
+	position: relative;
+	top: 6px;
+	}
+	
+	.screen .introduction {font-size:14px}
+		.screen .complete .introduction h2 {padding-bottom: 15px}
+		
+	
+				.screen .complete article .step h2 {
+				padding-bottom: 5px;
+				}
+					.screen .complete article .step.complete fieldset li:first-child, .screen .complete article .step.complete fieldset li {
+					background: none;
+					}
+
+	.screen .MyDashboard aside {width:300px;float:right;margin:30px 30px 15px 0}
+		.screen .MyDashboard aside section {
+		background: #ececec;
+		color: #888;
+		padding: 12px;
+		margin-bottom: 45px;
+		}
+			.screen .MyDashboard aside h2 {
+			padding-bottom: 5px;
+			text-transform: uppercase;
+			font-size: 11px;
+			color: #888;
+			}
+			.screen .MyDashboard aside section .controls {
+			float: right;
+			position: relative;
+			top: 15px;
+			}
+			.screen .MyDashboard aside dl {
+			line-height: 18px;
+			}
+			.screen .MyDashboard aside dt {
+			font-size:10px;
+			float: left;
+			width: 55px;
+			}
+			.screen .MyDashboard aside dd {
+			width: 220px;
+			font-size: 13px;
+			color: #000;
+			float: left;
+			clear: right;
+			}
+
+	.screen .DashboardLogin.register {
+	
+	}
+	
+	.screen .details section {
+    background: #ececec;
+    color: #888;
+    padding: 12px;
+    }
+        .screen .details section .controls {
+        float: right;
+        position: relative;
+        top: 15px;
+        }
+    .screen .details article {
+    padding: 12px;
+    }
+        .screen .details article section {
+        margin: 12px;
+        width: 500px;
+        position: relative;
+        margin-bottom: 30px;
+        }
+	
+    .screen .details h2 {
+    padding-bottom: 5px;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: #888;
+    overflow: hidden;
+    white-space: nowrap;
+    }
+	.screen .details th {
+    border: 1px solid #848484;
+    padding: .5em;
+    text-align: left;
+    }
+    .screen .details td {
+    border: 1px solid #848484;
+    padding: .5em;
+    }
+    .screen .details tr:nth-child(odd) {
+    background-color: #ffffff;
+    }
+    /* Table even rows style */
+    .screen .details tr:nth-child(even) {
+    background-color: #efefef;
+    }
+    /* Table hover style */
+    .screen .details tr:hover {
+    background-color: #dadada;
+    color: #000;
+    }
+    .screen .details dl {
+    line-height: 18px;
+    }
+    .screen .details dt {
+    font-size: 10px;
+    float: left;
+    width: 105px;
+    clear: both;
+    }
+    .screen .details dd {
+    font-size: 13px;
+    color: #000;
+    float: left;
+    clear: right;
+    }
+    .screen .details dd + dd {
+    margin-left: 105px;
+    }
+	
+footer {
+width: 890px;
+padding: 20px 0;
+margin: 0 auto;
+color: #757474;
+text-shadow: -1px -1px 1px #fff;
+}
+	footer span {
+	display: inline-block;
+	padding: 0 5px;
+	}
+	footer a, footer a:hover {
+	color: #757474;
+	}
+	
+
+/* Universal button css */
+a.button, button, .ui-button {
+color: #fff;
+background:#357d95;
+font: 11px/32px Helveitca, Arial, sans-serif;
+height: 32px;
+text-align: center;
+text-transform: uppercase;
+text-decoration: none;
+display: inline-block;
+width: 100px;
+min-width: 100px;
+border: none;
+text-shadow: none;
+-webkit-border-radius: 4px 4px 4px 4px;
+-moz-border-radius: 4px;
+-o-border-radius: 4px;
+border-radius: 4px;
+white-space: nowrap; /* forces labels that recive .ui-button to not collapse */
+}
+.ie6 .ui-button { left: 0 }
+a.button:hover , button:hover, button.hover, .ui-button.ui-state-hover {background:#48A7C7}
+button, .ui-button {min-width:100px;width: 100px}
+a.button.auto, button.auto, .auto.ui-button {min-width: 100px; width: auto;}
+a.button:hover, .ui-state-hover {text-decoration:none}
+a.button.primary, button.primary, .primary.ui-state-hover  {background:#ff9900}
+a.button.primary:hover, button.primary:hover, button.primary.hover, button.primary.ui-state-hover, a.primary.ui-state-hover {background:#FFC300}
+.secondary {}
+a.button.tertiary {height:24px;line-height:24px;font-size:10px;padding:0 8px}
+
+/* Required jQuery UI classes/overrides */
+.ui-helper-hidden-accessible {position:absolute;left:-9999em;}
+.showhide .ui-button {background:  url(../images/checkbox.png) 0 -30px no-repeat; padding-left: 25px;width:auto;min-width:1px;text-align: left}
+.showhide .ui-button.ui-state-active {background-position: 0 0; padding-left: 25px;}
+.ie .showhide .ui-button { background-position: 0 -27px; }
+.ie .showhide .ui-button.ui-state-active {background-position: 0 3px }
+.ui-overlay {
+position: absolute;
+z-index: 100;
+top: 0; left: 0;
+width: 100%;
+height: 100%;
+background: #fff;
+opacity: 0.7;
+}
+
+/* Required ASP.NET MVC validaiton classes/overrides */
+.validation-summary-valid,
+.validation-summary-errors,
+.field-validation-error {
+    display: none;
+}
+        
+.validation-summary-errors.alert,
+.field-validation-error.ui-state-error {
+    display: block;
+}
+
+/* Required jQuery SelectBox validation state classes/overrides */
+.selectbox .display.sbError {
+    border: 2px solid #FF3300;
+}
+
+/* Tool Tip */
+.tip {display: inline-block;*display:inline;zoom:1;position: relative;left: 3px;}
+.ie6 { top: 3px; }
+.ie .tip { left: 5px; }
+	.tip .icn {
+	background: #357d95;
+	color: #aecbd5;
+	font-weight: bold;
+	width: 15px;
+	height: 15px;
+	min-width: inherit;
+	display: block; 
+	font-size: 13px; 
+	line-height: 15px; 
+	text-align: center; 
+	cursor: pointer;
+	position: relative;
+	-webkit-border-radius: 10px 10px 10px 10px;
+	-moz-border-radius: 10px;
+	-o-border-radius: 10px;
+	border-radius: 10px;
+	
+	}
+	.tip div {
+	color: #000;
+	position: absolute;
+	left: -9999em;
+	top: -11px;
+	width: 290px;
+	padding: 10px;
+	border: 1px solid #337990;
+	background: #fff;
+	-webkit-box-shadow: 0 3px 5px #999;
+	-moz-box-shadow: 0 3px 5px #999;
+	-o-box-shadow: 0 3px 5px #999;
+	box-shadow: 0 3px 5px #999;
+	}
+	.tip div.showTip {
+	left: 25px;
+	z-index: 99;
+	}
+		.screen .master article .tip .showTip h3 {
+		color: #337990;
+		font-size: 14px;
+		position: relative;
+		line-height: 1.1;
+		left: -17px;
+		padding-left: 15px;
+		background: url(../images/icn.tooltip.caret.png) left center no-repeat;
+		float: none;
+		}
+
+.ui-dialog.email .ui-dialog-content h3 {
+font-size: 13px;
+}
+.ui-dialog.email .ui-dialog-content div:first-child {
+margin-top: 10px;
+}
+.screen .emailHistory {
+height: 140px;
+position: relative;
+}
+.screen .emailHistory li {
+border-bottom: 1px solid #BBB;
+cursor: pointer;
+}
+.screen .emailHistory li:hover {
+background-color: #dadada;
+color: #000;
+}
+.screen .emailHistory ul li:first-child {
+border-top: 1px solid #BBB;
+}
+.screen .emailHistory li span:first-child {
+display: block;
+float: left;
+width: 200px;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+.screen .emailHistory li span:nth-child(2) {
+display: block;
+float: right;
+}
+.screen .emailHistory ul a {
+display: none;
+}
+.screen .emailHistory .pagination {
+bottom: 10px;
+position: absolute;
+}
+
+.ellipsis {
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+/*.ellipsis:hover {
+text-overflow:inherit;
+overflow:visible;
+}*/
+
+.screen .master .collapse.jurisStateList {padding: 5px 0}
+.screen .master .collapse.jurisStateList.close { display: none;}
+
+.screen .inline input[type=checkbox]{}
+.screen .inline input[type=checkbox]{}
+
+/* debug styles */		
+.debugStatus {
+background: #0EF384;
+bottom: 0;
+opacity: 0.7;
+position: fixed;
+width: 100%;
+}
+
+.debugStatus p {
+border-color: #000000;
+border-style: solid solid none;
+border-width: 1px 1px medium;
+font-weight: bold;
+margin: 0;
+padding: 0;
+}
+
+.ajaxLoad {
+background-image: url(../images/ajax-loader.gif); 
+background-repeat: no-repeat;
+background-position: center center; 
+}
+
+@-moz-document url-prefix() {
+    .screen article .step.complete fieldset input { top: -3px }
+    .valid { top: -9px }
+}
+
+/* Print styles!
+-------------------------------------------------------------------------------*/
+@media print {
+
+
+
+}
+
+
+/* Media queries!
+-------------------------------------------------------------------------------*/
+
+/* Consider this: www.cloudfour.com/css-media-query-for-mobile-is-fools-gold/ */
+@media screen and (max-device-width: 480px) {
+	
+		
+}
+
+@media all and (orientation: portrait) {
+	
+}
+
+@media all and (orientation: landscape) {
+	
+}
+
+.verified-false{ color:#FF0000;}

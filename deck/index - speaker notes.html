@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"> 
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="author" content="Gabriel Chaney" />
+	<title>Mobile Web Basics</title>
+	
+	<!--<link href='http://fonts.googleapis.com/css?family=Corben:400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/normalize.css" type="text/css">
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+	
+	<script src="../../js/jquery-1.8.2.min.js"></script>
+	<script src="../../js/jquery.scrollTo-1.4.3.1.min.js"></script>
+	<script src="../../js/jquery.easing.1.3.js"></script>
+	<script src="../../js/jquery.scrollorama.js"></script>
+	<script src="../../js/jquery.scrolldeck.js"></script>-->
+</head>
+<body>
+	<div class="background"></div>
+	<div id="header">
+		<h1>Mobile Web Basics</h1>
+		<div id="nav">
+			<a href="#intro1" class="nav-button">Intro</a>
+			<a href="#responsive1" class="nav-button">Responsive Design</span></a>
+			<a href="#mobileweb1" class="nav-button">Mobile Websites</span></a>
+			<a href="#mvc41" class="nav-button">MVC4</span></a>
+			<a href="#mobilejs1" class="nav-button">Mobile JS</span></a>
+			<a href="#conclusion1" class="nav-button">Conclusion</span></a>
+			<a href="#credits1" class="nav-button">Credits</span></a>
+		</div>
+	</div>
+
+	<div class="slide" id="intro1">
+		<h1>Mobile Web Basics</h1>
+		<p><small>a <a href="http://johnpolacek.github.com/scrolldeck.js">scrolldeck.js</a> presentation by <a href="mailto:gabriel.chaney@gmail.com">Gabriel Chaney</a></small></p>
+	</div>
+	
+	<div class="slide" id="intro2">
+		<h2>What are we going to discuss?</h2>
+		<ol>
+			<li class="animate-build" data-build="1">Review</li>
+			<li class="animate-build" data-build="2">Web Solution 1: Responsive Design</li>
+			<li class="animate-build" data-build="3">Web Solution 2: Mobile Websites</li>
+			<li class="animate-build" data-build="4">ASP.NET MVC 4</li>
+			<li class="animate-build" data-build="5">jQuery Mobile, jQTouch</li>
+			<li class="animate-build" data-build="6">Demo!</li>
+			<li class="animate-build" data-build="7">Conclusion</li>
+		</ol>
+	</div>
+	
+	<div class="slide" id="intro3">
+		<h2>What have we already learned?</h2>
+		<ul>
+			<li class="animate-build" data-build="1">Environment<span class="speaker-notes"> - Programming platform and tooling whether it be native language, cross-platform JavaScript-based native app, or mobile web.</span></li>
+			<li class="animate-build" data-build="2">Security<span class="speaker-notes"> - For us, it's about authentication initially since our authentication relies on a cookie right now. We would have to support OAuth or something.</span></li>
+			<li class="animate-build" data-build="3">Testing<span class="speaker-notes"> - TDD, physical devices, GUI test autmoation.</span></li>
+			<li class="animate-build" data-build="4">Distribution<span class="speaker-notes"> - Native apps using "app store" registration fees and/or sales cuts vs. mobile web standard deployment.</span></li>
+			<li class="animate-build" data-build="5">PhoneGap &amp; Appcelerator<span class="speaker-notes"> - Cross-platform JavaScript-based frameworks. We're going to learn about mobile-specific web solutions today.</span></li>
+		</ul>
+	</div>
+	
+	<div class="slide" id="responsive1">
+		<h1>Web Solution 1: <span class="animate-build" data-animation="fly-in-right" data-build="1">Responsive Design</span></h1>
+	</div>
+	
+	<div class="slide" id="responsive2">
+		<h2>What is <em>responsive design</em>?</h2>
+	</div>
+	
+	<div class="slide" id="responsive3">
+		<blockquote class="quote" cite="http://johnpolacek.github.com/scrolldeck.js/decks/responsive/">
+			<p>&ldquo;Responsive websites <br />
+			<strong class="animate-in" data-animation="space-in">respond</strong>
+			to their environment&rdquo; <br />
+			<small>- John Polacek</small></p>
+			<span class="speaker-notes">In a really good deck I ripped off a lot of the resonsive design material from. You can find online called "What The Heck Is Responsive Web Design?"</span>
+		</blockquote>
+	</div>
+	
+	<div class="slide" id="responsive4">
+		<blockquote class="quote" cite="http://johnpolacek.github.com/scrolldeck.js/decks/responsive/">
+			<h2>Responsive Best Practice</h2>
+			<p>
+			<span class="animate-build" data-build="1">A mixed approach between: </span>
+				<span class="animate-build" data-build="2">
+					<br /><strong class>Adaptive</strong> <br /><small>(Multiple Fixed Width Layouts)</small>
+				</span> <br />
+				<span class="animate-build" data-build="3">&rarr; Fixed width for large and medium.</span> <br />
+				<span class="speaker-notes"> - Use of CSS media queries to respond to pre-defined large and medium screens sizes.</span>
+				<span class="animate-build" data-build="4">
+					<br /><strong>Responsive</strong> <br /><small>(Multiple Fluid Grid Layouts)</small>
+				</span> <br />
+				<span class="animate-build" data-build="5">&rarr; Fluid width for small.</span>
+				<span class="speaker-notes"> - Use of fluid CSS rules using "Ems" and percentages for font-sizes, widths, etc.</span>
+			</p>
+		</blockquote>
+	</div>
+	
+	<div class="slide" id="responsive5">
+		<h2>Responsive Examples</h2>
+		<ul class="animate-build" data-build="1">
+			<li><a href="http://www.bostonglobe.com">Boston Globe</a></li>
+			<li><a href="http://www.wentworthmansion.com">Wentworth Mansion</a></li>
+			<li><a href="http://www.microsoft.com">Microsoft</a></li>
+			<li><a href="http://gchaney2-laptop.ncarb.local:53387">My NCARB Login</a><span class="speaker-notes"> - Used Goldilocks Approach template. It uses the Multiple Fixed Width Layout for the large and medium screens and the Fluid Layout for small screens. You should develop the different screens starting in phases starting with the small screen and moving to the large screen.</span></li>
+		</ul>
+	</div>
+	
+	<div class="slide" id="responsive6">
+		<h2>Responsive Pros &amp; Cons</h2>
+		<span class="speaker-notes"> - These pros/cons are mostly for comparing/contrasting responsive design vs. mobile-specifc websites and in light of our team.</span>
+		<p class="animate-build" data-build="1">Pros:</p>
+		<ul>
+			<li class="animate-build" data-build="2">One page per screen<span class="speaker-notes"> - additional content only added to one page. still need testing on all screens for new content though.</span></li>
+			<li class="animate-build" data-build="3">Trendy</li>
+		</ul>
+		<p class="animate-build" data-build="4">Cons:</p>
+		<ul>
+			<li class="animate-build" data-build="5">Native UX and features<span class="speaker-notes"> - Difficult to reproduce native UI/UX and access to native features is limited.</span></li>
+			<li class="animate-build" data-build="6">Web Performance<span class="speaker-notes"> - Hides some desktop content but still loads everything, so could have a performance impact for high latency networks (3G/4G).</span></li>
+			<li class="animate-build" data-build="7">Retrofitting<span class="speaker-notes"> - Can be difficult to retrofit existing pages.</span></li>
+		</ul>
+	</div>
+	
+	<div class="slide" id="mobileweb1">
+		<h1>Web Solution 2: <br /><span class="animate-build" data-animation="fly-in-right" data-build="1">Mobile Websites</span></h1>
+	</div>
+	
+	<div class="slide" id="mobileweb2">
+		<h2>Mobile Web Pros &amp; Cons</h2>
+		<p class="animate-build" data-build="1">Pros:</p>
+		<ul>
+			<li class="animate-build" data-build="2">Web Performance<span class="speaker-notes"> - Get only what's necessary for a the mobile page.</span></li>
+			<li class="animate-build" data-build="3">Limited refactoring<span class="speaker-notes"> - Although there may be some limited refactoring for reuse of server code for mobile views, it should be considerably less than the massive retrofitting responsive design could require for existing pages.</span></li>
+		</ul>
+		<p class="animate-build" data-build="4">Cons:</p>
+		<ul>
+			<li class="animate-build" data-build="5">Native UI/UX and features<span class="speaker-notes"> - Difficult to reproduce native UI/UX and access to native features is limited.</span></li>
+			<li class="animate-build" data-build="6">Multiple pages per screen<span class="speaker-notes"> - You will probably need a desktop and a mobile page for most screens. This may affect features changes or new features.</span></li>
+			<li class="animate-build" data-build="7">Overall Performance<span class="speaker-notes"> - When compared to most native apps, web sites are slow.</span></li>
+		</ul>
+	</div>
+	
+	<div class="slide" id="mobileweb3">
+	
+		<h2>Big pro for our team: <br /><span class="animate-build" data-build="1">ASP.NET MVC 4 makes it easier!</span></h2>
+	
+	</div>
+	
+	<div class="slide" id="mvc41">
+		<h1>ASP.NET MVC 4</h1>
+		<ul>
+			<li class="animate-build" data-build="1">Convention-over-configuration<span class="speaker-notes"> - It defaults to using a *.Mobile.cshtml suffix for views i.e. Index.Mobile.cshtml or _Layout.Mobile.cshtml.</span></li>
+			<li class="animate-build" data-build="2">
+				Overridable<span class="speaker-notes"> - Example: Index.iPhone.cshtml</span>
+				<div class="animate-build img-wrap" id="img-displaymodeprovidercodesnippet" data-build="3">
+					<img src="img/displaymodeprovider_code_screenshot.png" alt="DisplayModeProvider code snippet." />
+				</div>
+				<span class="speaker-notes">Tells MVC to service requests if the string "iPhone" is in the user header agent string of income request.</span>
+			</li>
+		</ul>
+	</div>
+	
+	<div class="slide" id="mobilejs1">
+		<h1>Mobile JavaScript Frameworks</h1>
+		<ul>
+			<li class="animate-build" data-build="1">Polyfills<span class="speaker-notes"> - Usual uses pollyfills HTML/CSS standarization issues between mobile browsers.</span></li>
+			<li class="animate-build" data-build="2">Native look &amp; feel<span class="speaker-notes"> - Allows simulation of native layouts, styles, and animations</span></li>
+			<!--<li class="animate-build" data-build="3">
+				Native features<span class="speaker-notes"> - Uses HTML5 to access a limited number of native device features i.e. geolocation.</span>
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</li>-->
+		</ul>
+	</div>
+	
+	<div class="slide" id="mobilejs2">
+		<h2>jQuery Mobile</h2>
+		<ul>
+			<li><code>data-role</code> Attribute <span class="speaker-notes"> - Use this to tell jQuery Mobile what parts of the mark-up need to be converted for mobile "widgets" (navigate to jQuery Mobile to demonstrate).</span></li>
+			<li><a href="http://jquerymobile.com/demos/1.2.0/docs/about/platforms.html">Platform Compatibility</a></li>
+			<li><a href="http://jquerymobile.com/themeroller/">ThemeRoller</a></li>
+			<li><a href="http://taitems.tumblr.com/post/7240874402/ios-inspired-jquery-mobile-theme-jquery-mobile">Free iOS Theme</a></li>
+		</ul>
+	</div>
+	
+	<!--<div class="slide" id="mobilejs3">
+		<h2>jQTouch</h2>
+		<p>Demo: <a href="http://www.jqtouch.com/preview/demos/main/">http://www.jqtouch.com/preview/demos/main/</a></p>
+		<ul>
+			<li></li>
+			<li>Free iOS Theme</li>
+			<li></li>
+		</ul>
+	</div>-->
+	
+	<div class="slide" id="mobilejs4">
+		<h1><a href="http://gchaney2-laptop.ncarb.local:53387/">My NCARB Demo</a></h1>
+	</div>
+	
+	<div class="slide where" id="credits1">
+		<h2>Useful Stuff</h2>
+		<p><a href="http://www.designbyfront.com/workinprogress/article/the-goldilocks-approach-to-responsive-design">Goldilocks Approach</a></p>
+		<p><a href="http://www.asp.net/mvc/tutorials/mvc-4/aspnet-mvc-4-mobile-features">ASP.NET MVC 4 Mobile Features</a></p>
+		<p><a href="http://jquerymobile.com/demos/1.2.0/docs/about/getting-started.html">Getting Started with jQuery Mobile</a></p>
+		<p><a href="http://msdn.microsoft.com/en-us/magazine/hh771055.aspx">Getting Started with Mobile Web Development Using HTML5, jQuery Mobile and ASP.NET MVC 4</a></p>
+		<p><a href="http://www.asp.net/mobile/device-simulators">Simulate Popular Mobile Devices for Testing</a></p>
+		<p><a href="http://www.jqtouch.com/preview/demos/main/">JQTouch iOS Optimized Framework</a></p>
+	</div>
+	
+	<div class="slide" id="credits2">
+		<h3>Credits</h3>
+		<p><a href="http://www.hanselman.com/blog/SimulatingAnIPhoneOrIPadBrowserForASPNETMobileWebDevelopmentWithWebMatrix2OrVisualStudio2012.aspx">Simulating an iPhone or iPad browser for ASP.NET Mobile Web Development with WebMatrix 2 or Visual Studio 2012</a> by Scott Hanselman</p>
+		<p><a href="http://johnpolacek.github.com/scrolldeck.js/decks/responsive/">What The Heck Is Responsive Web Design?</a> by <a href="http://twitter.com/johnpolacek">John Polacek</a></p>
+		<p><a href="http://johnpolacek.github.com/scrolldeck.js/">Scrolldeck</a> and <a href="http://johnpolacek.github.com/scrollorama">Scrollorama</a> created by <a href="http://twitter.com/johnpolacek">John Polacek</a></p>
+		<p><a href="http://www.asp.net/mvc/tutorials/mvc-4/aspnet-mvc-4-mobile-features">ASP.NET MVC 4 Mobile Features</a> by Rick Anderson</p>
+	</div>
+	
+	<footer id="footer">
+		<p><a href="mailto:ScrumDawgs" class="email">Email ScrumDawgs</a><small class="speaker-notes-toggle">(<span class="toggle-text">show</span> speaker notes)</small></p>
+	</footer>
+	
+
+</body></html>
